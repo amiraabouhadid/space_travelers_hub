@@ -10,7 +10,7 @@ const Header = () => {
     { id: 3, path: '/profile', text: 'My Profile' },
   ];
   return (
-    <header className=" w-11/12  flex justify-between items-center px-6 py-3 Header">
+    <header className="w-11/12 flex justify-between items-center px-6 py-3 Header">
       <NavLink className="flex justify-between items-center" to="/">
         <img className="w-12 h-auto" src={logo} alt="planet-logo" />
         <span className="ml-4 text-2xl">Space Traveler&#39;s Hub</span>
