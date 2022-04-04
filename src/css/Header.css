@@ -1,14 +1,15 @@
 .Header {
-  position: fixed;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
-  border-bottom: 1px solid #aaa;
+	position: fixed;
+	left: 50%;
+	top: 0;
+	transform: translateX(-50%);
+	border-bottom: 1px solid #aaa;
 }
 
 .NavLink:last-child {
-  border-left: 1px solid #222;
+	border-left: 1px solid #222;
 }
+
 .NavLink.active {
-  text-decoration: underline;
+	text-decoration: underline;
 }
