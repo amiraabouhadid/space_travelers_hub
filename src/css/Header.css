@@ -1,5 +1,5 @@
 .Header {
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 0;
   transform: translateX(-50%);
