@@ -10,11 +10,12 @@
   position: relative;
 }
 
-@keyframes underline{
-  0%   {
-    width : 0;
+@keyframes underline {
+  0% {
+    width: 0;
     background-color: transparent;
   }
+
   100% {
     width: 75%;
     background-color: rgb(37, 99, 235);
