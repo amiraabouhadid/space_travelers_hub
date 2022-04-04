@@ -9,3 +9,6 @@
 .NavLink:last-child {
   border-left: 1px solid #222;
 }
+.NavLink.active {
+  text-decoration: underline;
+}

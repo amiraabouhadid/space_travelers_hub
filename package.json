@@ -2,7 +2,6 @@
   "name": "space_travelers_hub",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nilaaa.github.io/space_traveler_hub",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",

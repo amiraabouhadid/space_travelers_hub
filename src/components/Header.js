@@ -9,6 +9,7 @@ const Header = () => {
     { id: 2, path: '/missions', text: 'Missions' },
     { id: 3, path: '/profile', text: 'My Profile' },
   ];
+
   return (
     <header className="w-11/12 flex justify-between items-center px-6 py-3 Header">
       <NavLink className="flex justify-between items-center" to="/">
@@ -19,7 +20,11 @@ const Header = () => {
       <nav className="flex items-center justify-end w-1/4">
         {
           links.map((link) => (
-            <NavLink key={link.id} className="px-3 text-blue-600 NavLink" to={link.path}>
+            <NavLink
+              key={link.id}
+              className="px-3 text-blue-600 NavLink"
+              to={link.path}
+            >
               {link.text}
             </NavLink>
           ))
