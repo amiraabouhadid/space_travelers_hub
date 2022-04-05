@@ -1,12 +1,12 @@
-const FETCHED_ROCKETS = 'app/rockets/FETCHED_ROCKETS';
+const ROCKETS_FETCHED = 'app/rockets/ROCKETS_FETCHED';
 
-const fetchRockets = (rockets) => ({ type: FETCHED_ROCKETS, payload: rockets });
+const fetchRockets = (rockets) => ({ type: ROCKETS_FETCHED, payload: rockets });
 
 const reducer = (state = [], action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case FETCHED_ROCKETS:
+    case ROCKETS_FETCHED:
       return [...payload];
     default:
       return state;
