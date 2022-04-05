@@ -6,7 +6,7 @@ import rockets from './rockets/rockets';
 
 const rootReducer = combineReducers({
   missions,
-  rockets
+  rockets,
 });
 
 const middleware = [thunk, logger];
