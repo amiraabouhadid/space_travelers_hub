@@ -1,9 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
 import Mission from './Mission';
 
-const Missions = () => {
-  const missions = useSelector((state) => state.missions, shallowEqual);
+const Missions = (props) => {
+  const { missions, joinMissionDispatch, leaveMissionDispatch } = props;
 
   return (
     <div className="mx-8 my-8 px-5 py-5 text-left">
@@ -21,9 +21,9 @@ const Missions = () => {
           {missions.map((mission) => (
             <tr key={mission.id}>
               <Mission
-                description={mission.description}
-                name={mission.name}
-                id={mission.id}
+                mission={mission}
+                joinMissionFunc={joinMissionDispatch}
+                leaveMissionFunc={leaveMissionDispatch}
               />
             </tr>
           ))}
