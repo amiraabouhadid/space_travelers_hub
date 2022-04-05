@@ -1,9 +1,9 @@
 /* eslint-disable no-case-declarations */
 import axios from 'axios';
 
-const GETMISSIONS = 'app/missions/MISSIONS_RETRIEVED';
-const JOINMISSION = 'app/missions/MISSION_JOINED';
-const LEAVEMISSION = 'app/missions/MISSION_LEFT';
+const GETMISSIONS = 'app/missions/GET_MISSIONS';
+const JOINMISSION = 'app/missions/JOIN_MISSION';
+const LEAVEMISSION = 'app/missions/LEAVE_MISSION';
 
 const reducer = (state = [], action) => {
   const { type, payload } = action;
@@ -32,29 +32,34 @@ const reducer = (state = [], action) => {
       return state;
   }
 };
+export const leaveMissionActionCreator = (id) => ({
+  type: LEAVEMISSION,
+  payload: id,
+});
 export const leaveMission = (id) => (dispatch) => {
   try {
-    dispatch({
-      type: LEAVEMISSION,
-      payload: id,
-    });
+    dispatch(leaveMissionActionCreator(id));
     return Promise.resolve(id);
   } catch (err) {
     return Promise.reject(err);
   }
 };
+export const joinMissionActionCreator = (id) => ({
+  type: JOINMISSION,
+  payload: id,
+});
 export const joinMission = (id) => (dispatch) => {
   try {
-    dispatch({
-      type: JOINMISSION,
-      payload: id,
-    });
+    dispatch(joinMissionActionCreator(id));
     return Promise.resolve(id);
   } catch (err) {
     return Promise.reject(err);
   }
 };
-
+export const getMissionsActionCreator = (missions) => ({
+  type: GETMISSIONS,
+  payload: missions,
+});
 export const getMissions = () => async (dispatch) => {
   try {
     const res = await axios.get('https://api.spacexdata.com/v3/missions');
@@ -67,10 +72,7 @@ export const getMissions = () => async (dispatch) => {
       });
     });
 
-    dispatch({
-      type: GETMISSIONS,
-      payload: missions,
-    });
+    dispatch(getMissionsActionCreator(missions));
     return Promise.resolve(res);
   } catch (err) {
     return Promise.reject(err);
