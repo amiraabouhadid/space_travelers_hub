@@ -35,6 +35,25 @@ const Mission = (props) => {
 
     );
   };
+  const statusBadge = (mission) => {
+    if (mission.reserved) {
+      return (
+        <span
+          className="badge badge-primary bg-primary"
+        >
+          {'Active Member'.toUpperCase()}
+        </span>
+      );
+    }
+    return (
+      <span
+        className="badge badge-secondary bg-secondary"
+      >
+        {'Not A member'.toUpperCase()}
+      </span>
+
+    );
+  };
   return (
     <>
       <td className="font-bold">
@@ -44,9 +63,7 @@ const Mission = (props) => {
         {description}
       </td>
       <td className="align-middle">
-        <button type="submit" className=" btn btn-primary">
-          Not A member
-        </button>
+        {statusBadge(mission)}
       </td>
       <td className="align-middle">
         {joinButton(mission)}
