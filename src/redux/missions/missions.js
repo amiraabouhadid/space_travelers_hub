@@ -9,12 +9,6 @@ const reducer = (state = [], action) => {
   const { type, payload } = action;
   switch (type) {
     case GETMISSIONS:
-      let missionsSaved;
-      if (localStorage.getItem('missions')) {
-        missionsSaved = JSON.parse(localStorage.getItem('missions'));
-        return [...missionsSaved];
-      }
-      localStorage.setItem('missions', JSON.stringify(payload));
       return [...payload];
 
     case JOINMISSION:
@@ -24,7 +18,6 @@ const reducer = (state = [], action) => {
         }
         return { ...mission, reserved: true };
       });
-      localStorage.setItem('missions', JSON.stringify(newMissions));
       return [...newMissions];
     case LEAVEMISSION:
       const updatedMissions = state.map((mission) => {
@@ -33,7 +26,6 @@ const reducer = (state = [], action) => {
         }
         return { ...mission, reserved: false };
       });
-      localStorage.setItem('missions', JSON.stringify(updatedMissions));
       return [...updatedMissions];
 
     default:
