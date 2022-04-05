@@ -1,6 +1,10 @@
 const ROCKETS_FETCHED = 'app/rockets/ROCKETS_FETCHED';
+const ROCKET_RESERVED = 'app/rockets/ROCKET_RESERVED';
+const ROCKET_UNRESERVED = 'app/rockets/ROCKET_UNRESERVED';
 
 const fetchRockets = (rockets) => ({ type: ROCKETS_FETCHED, payload: rockets });
+const addReservation = (id) => ({ type: ROCKET_RESERVED, payload: id });
+const removeReservation = (id) => ({ type: ROCKET_UNRESERVED, payload: id });
 
 const reducer = (state = [], action) => {
   const { type, payload } = action;
@@ -8,6 +12,26 @@ const reducer = (state = [], action) => {
   switch (type) {
     case ROCKETS_FETCHED:
       return [...payload];
+    case ROCKET_RESERVED:
+      return [
+        ...state.map((rocket) => {
+          if (rocket.id !== payload) return rocket;
+          return {
+            ...rocket,
+            reserved: true,
+          };
+        }),
+      ];
+    case ROCKET_UNRESERVED:
+      return [
+        ...state.map((rocket) => {
+          if (rocket.id !== payload) return rocket;
+          return {
+            ...rocket,
+            reserved: false,
+          };
+        }),
+      ];
     default:
       return state;
   }
@@ -31,5 +55,5 @@ const getRockets = () => async (dispatch) => {
     });
 };
 
-export { getRockets };
+export { getRockets, addReservation, removeReservation };
 export default reducer;
