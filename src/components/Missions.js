@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector, shallowEqual } from 'react-redux';
 import Mission from './Mission';
-import { getMissions } from '../redux/missions/missions';
 
 const Missions = () => {
-  const missionsFetched = useSelector((state) => state.missions, shallowEqual);
-  const dispatch = useDispatch();
-  const [missions, setMissions] = useState([]);
-  useEffect(() => {
-    dispatch(getMissions());
-  }, []);
-  useEffect(() => {
-    setMissions(missionsFetched);
-  }, [missionsFetched]);
+  const missions = useSelector((state) => state.missions, shallowEqual);
+
   return (
     <div className="mx-8 my-8 px-5 py-5 text-left">
       <table className="table table-striped table-bordered table-responsive">

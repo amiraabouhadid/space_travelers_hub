@@ -16,7 +16,6 @@ export const getMissions = () => async (dispatch) => {
   try {
     const res = await axios.get('https://api.spacexdata.com/v3/missions');
     const missions = [];
-    console.log(res.data);
     res.data.forEach((element) => {
       missions.push({
         id: element.mission_id,
@@ -24,7 +23,7 @@ export const getMissions = () => async (dispatch) => {
         description: element.description,
       });
     });
-    missions.forEach((mission) => console.log(mission.id));
+
     dispatch({
       type: GETMISSIONS,
       payload: missions,
