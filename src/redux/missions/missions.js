@@ -32,35 +32,35 @@ const reducer = (state = [], action) => {
       return state;
   }
 };
-export const MISSION_LEFTActionCreator = (id) => ({
+export const leaveMissionActionCreator = (id) => ({
   type: MISSION_LEFT,
   payload: id,
 });
-export const MISSION_LEFT = (id) => (dispatch) => {
+export const leaveMission = (id) => (dispatch) => {
   try {
-    dispatch(MISSION_LEFTActionCreator(id));
+    dispatch(leaveMissionActionCreator(id));
     return Promise.resolve(id);
   } catch (err) {
     return Promise.reject(err);
   }
 };
-export const MISSION_JOINEDActionCreator = (id) => ({
+export const joinMissionActionCreator = (id) => ({
   type: MISSION_JOINED,
   payload: id,
 });
-export const MISSION_JOINED = (id) => (dispatch) => {
+export const joinMission = (id) => (dispatch) => {
   try {
-    dispatch(MISSION_JOINEDActionCreator(id));
+    dispatch(joinMissionActionCreator(id));
     return Promise.resolve(id);
   } catch (err) {
     return Promise.reject(err);
   }
 };
-export const MISSIONS_RETRIEVEDActionCreator = (missions) => ({
+export const getMissionsActionCreator = (missions) => ({
   type: MISSIONS_RETRIEVED,
   payload: missions,
 });
-export const MISSIONS_RETRIEVED = () => async (dispatch) => {
+export const getMissions = () => async (dispatch) => {
   try {
     const res = await axios.get('https://api.spacexdata.com/v3/missions');
     const missions = [];
@@ -72,7 +72,7 @@ export const MISSIONS_RETRIEVED = () => async (dispatch) => {
       });
     });
 
-    dispatch(MISSIONS_RETRIEVEDActionCreator(missions));
+    dispatch(getMissionsActionCreator(missions));
     return Promise.resolve(res);
   } catch (err) {
     return Promise.reject(err);
