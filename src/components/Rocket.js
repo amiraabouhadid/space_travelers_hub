@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addReservation as addRes, removeReservation as rmRes } from '../redux/rockets/rockets';
 import '../css/Rocket.css';
 
 const Rocket = ({ rocket }) => {
+  const dispatch = useDispatch();
+
   const {
-    description, image, name,
+    description, image, name, id,
   } = rocket;
 
   const isReserved = (rocket) => {
@@ -12,13 +16,24 @@ const Rocket = ({ rocket }) => {
     return false;
   };
 
+  const handleDispatch = () => (rocket.reserved ? dispatch(rmRes(id)) : dispatch(addRes(id)));
+
   return (
     <div className="flex items-center w-full gap-4 rocket-container">
       <img className="rocket-image" src={image} alt={name} />
       <div>
         <h2 className="text-xl font-semibold">{name}</h2>
-        <p className="text-md">{description}</p>
-        <button className="text-sm text-white bg-blue-500 rounded-md p-2" type="button">
+        <p className="text-md">
+          {isReserved(rocket) && (
+            <span className="bg-blue-400 text-white text-xs p-1 text-center mr-2 rounded-md">Reserved</span>
+          )}
+          {description}
+        </p>
+        <button
+          className={isReserved(rocket) ? 'text-sm text-blue-500 bg-white border-1 border-blue-500 rounded-md p-2' : 'text-sm border-1 border-blue-500 text-white bg-blue-500 rounded-md p-2'}
+          onClick={handleDispatch}
+          type="button"
+        >
           {isReserved(rocket) ? 'Cancel Reservation' : 'Reserve Rocket'}
         </button>
       </div>
