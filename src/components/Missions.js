@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
+import PropTypes from 'prop-types';
 import Mission from './Mission';
 
 const Missions = (props) => {
@@ -32,5 +32,13 @@ const Missions = (props) => {
       </table>
     </div>
   );
+};
+Missions.propTypes = {
+  missions:
+  PropTypes.instanceOf(Array).isRequired,
+  joinMissionDispatch:
+  PropTypes.instanceOf(Function).isRequired,
+  leaveMissionDispatch:
+  PropTypes.instanceOf(Function).isRequired,
 };
 export default Missions;
