@@ -5,9 +5,9 @@ import logo from '../assets/icons/planet.png';
 
 const Header = () => {
   const links = [
-    { id: 1, path: '/', text: 'Rockets' },
-    { id: 2, path: '/missions', text: 'Missions' },
-    { id: 3, path: '/profile', text: 'My Profile' },
+    { id: 1, path: '/space_travelers_hub/', text: 'Rockets' },
+    { id: 2, path: '/space_travelers_hub/missions', text: 'Missions' },
+    { id: 3, path: '/space_travelers_hub/profile', text: 'My Profile' },
   ];
 
   return (

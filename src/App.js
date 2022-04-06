@@ -31,9 +31,9 @@ const App = () => {
       <Header />
       <Routes>
 
-        <Route exact path="/" element={(<Rockets rockets={rockets} />)} />
+        <Route exact path="/space_travelers_hub/" element={(<Rockets rockets={rockets} />)} />
         <Route
-          path="/missions"
+          path="/space_travelers_hub/missions"
           element={(
             <Missions
               missions={missions}
@@ -44,7 +44,7 @@ const App = () => {
         />
 
         <Route
-          path="/profile"
+          path="/space_travelers_hub/profile"
           element={(
             <Profile
               missions={missions}
