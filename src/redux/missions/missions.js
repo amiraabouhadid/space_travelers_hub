@@ -1,17 +1,65 @@
+/* eslint-disable no-case-declarations */
 import axios from 'axios';
 
-const GETMISSIONS = 'app/missions/MISSIONS_RETRIEVED';
+const MISSIONS_RETRIEVED = 'app/missions/MISSIONS_RETRIEVED ';
+const MISSION_JOINED = 'app/missions/MISSION_JOINED';
+const MISSION_LEFT = 'app/missions/MISSION_LEFT';
 
-const reducer = (missions = [], action) => {
+const reducer = (state = [], action) => {
   const { type, payload } = action;
   switch (type) {
-    case GETMISSIONS:
+    case MISSIONS_RETRIEVED:
       return [...payload];
+
+    case MISSION_JOINED:
+      const newMissions = state.map((mission) => {
+        if (mission.id !== payload) {
+          return mission;
+        }
+        return { ...mission, reserved: true };
+      });
+      return [...newMissions];
+    case MISSION_LEFT:
+      const updatedMissions = state.map((mission) => {
+        if (mission.id !== payload) {
+          return mission;
+        }
+        return { ...mission, reserved: false };
+      });
+      return [...updatedMissions];
+
     default:
-      return missions;
+      return state;
   }
 };
-
+export const leaveMissionActionCreator = (id) => ({
+  type: MISSION_LEFT,
+  payload: id,
+});
+export const leaveMission = (id) => (dispatch) => {
+  try {
+    dispatch(leaveMissionActionCreator(id));
+    return Promise.resolve(id);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};
+export const joinMissionActionCreator = (id) => ({
+  type: MISSION_JOINED,
+  payload: id,
+});
+export const joinMission = (id) => (dispatch) => {
+  try {
+    dispatch(joinMissionActionCreator(id));
+    return Promise.resolve(id);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+};
+export const getMissionsActionCreator = (missions) => ({
+  type: MISSIONS_RETRIEVED,
+  payload: missions,
+});
 export const getMissions = () => async (dispatch) => {
   try {
     const res = await axios.get('https://api.spacexdata.com/v3/missions');
@@ -24,10 +72,7 @@ export const getMissions = () => async (dispatch) => {
       });
     });
 
-    dispatch({
-      type: GETMISSIONS,
-      payload: missions,
-    });
+    dispatch(getMissionsActionCreator(missions));
     return Promise.resolve(res);
   } catch (err) {
     return Promise.reject(err);
