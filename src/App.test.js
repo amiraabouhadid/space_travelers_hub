@@ -1,9 +1,44 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import Store from './redux/configureStore';
 import Missions from './components/Missions';
 import Profile from './components/Profile';
 
+import App from './App';
+
+describe('Header component', () => {
+  test('rockets link', () => {
+    render(
+      <Provider store={Store}>
+        <App />
+      </Provider>,
+    );
+    const rocketsLink = screen.getByText(/\b(rockets)\b/i);
+    userEvent.click(rocketsLink);
+    expect(screen.getByText(/rockets/i)).toBeInTheDocument();
+  });
+  test('missions link', () => {
+    render(
+      <Provider store={Store}>
+        <App />
+      </Provider>,
+    );
+    const missionsLink = screen.getByText(/\b(missions)\b/i);
+    userEvent.click(missionsLink);
+    expect(screen.getByText(/missions/i)).toBeInTheDocument();
+  });
+  test('profile link', () => {
+    render(
+      <Provider store={Store}>
+        <App />
+      </Provider>,
+    );
+    const profileLink = screen.getByText(/\b(my profile)\b/i);
+    userEvent.click(profileLink);
+    expect(screen.getAllByText(/\b(my missions)\b|\b(my rockets)\b/i)).toHaveLength(2);
+  });
+});
 describe('Profile page component', () => {
   test('renders profile headers', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
