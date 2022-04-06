@@ -19,7 +19,6 @@ const App = () => {
     dispatch(getMissions());
   }, []);
 
-
   const joinMissionDispatch = (id) => {
     dispatch(joinMission(id));
   };
@@ -27,14 +26,12 @@ const App = () => {
     dispatch(leaveMission(id));
   };
 
-
   return (
     <Router>
       <Header />
       <Routes>
 
         <Route exact path="/" element={(<Rockets rockets={rockets} />)} />
-     
         <Route
           path="/missions"
           element={(
