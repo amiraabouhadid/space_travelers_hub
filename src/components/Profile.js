@@ -14,7 +14,7 @@ const Profile = (props) => {
             {
         missions.filter((mission) => mission.reserved).map((mission) => (
           <tr key={mission.id}>
-            <td>
+            <td className="p-3">
               {mission.name}
             </td>
           </tr>
