@@ -15,7 +15,7 @@ const Header = () => {
       <NavLink
         style={{ textDecoration: 'none' }}
         className="flex justify-between items-center"
-        to="/"
+        to="/space_travelers_hub/"
       >
         <img className="w-10" src={logo} alt="planet-logo" />
         <h2 className="ml-4 text-dark ">Space Traveler&#39;s Hub</h2>
