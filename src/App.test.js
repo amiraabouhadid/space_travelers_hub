@@ -8,6 +8,16 @@ import Profile from './components/Profile';
 import App from './App';
 
 describe('Header component', () => {
+  test('home page link', () => {
+    render(
+      <Provider store={Store}>
+        <App />
+      </Provider>,
+    );
+    const homeLink = screen.getByText(/\b(Space Traveler's Hub)\b/i);
+    userEvent.click(homeLink);
+    expect(screen.getByText(/rockets/i)).toBeInTheDocument();
+  });
   test('rockets link', () => {
     render(
       <Provider store={Store}>
