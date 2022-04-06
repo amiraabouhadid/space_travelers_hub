@@ -183,3 +183,66 @@ describe('Missions page component', () => {
     expect(missionsPageAfterJoinMission).toMatchSnapshot();
   });
 });
+
+describe('Rockets page component', () => {
+  test('renders correctly', () => {
+    const rockets = [{ id: '1', name: 'Falcon Heavy', description: 'a dummy text created for testing purposes' }];
+
+    const rocketsPage = renderer.create(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    ).toJSON();
+    expect(rocketsPage).toMatchSnapshot();
+  });
+  test('renders  rocket  name', () => {
+    const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
+
+    render(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    );
+    const rocketName = screen.getAllByText(/\bFalcon\b/i);
+    expect(rocketName).toHaveLength(1);
+  });
+  test('renders  rocket  description ', () => {
+    const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
+
+    render(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    );
+    const rocketDescription = screen.getAllByText(/\ba dummy text created for testing purposes\b/i);
+    expect(rocketDescription).toHaveLength(1);
+  });
+  test('renders reservation button before reserving the rocket', () => {
+    const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
+
+    render(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    );
+    const reservationButton = screen.getAllByText(/\breserve rocket\b/i);
+    expect(reservationButton).toHaveLength(1);
+  });
+  test('add reserved badge and cancel reservation button when the rocket is booked', () => {
+    const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
+
+    render(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    );
+    const reservationButton = screen.getAllByText(/\breserve rocket\b/i);
+    userEvent.click(reservationButton);
+    const rocketsPageAfter = renderer.create(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    ).toJSON();
+    expect(rocketsPageAfte).toMatchSnapshot();
+  });
+});
