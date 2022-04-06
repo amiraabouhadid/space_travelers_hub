@@ -5,3 +5,25 @@
 @tailwind utilities;
 
 /* eslint-enable */
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: rgb(65, 134, 246);
+  border-radius: 5px;
+  transition: background-color 150ms ease-in-out;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: rgb(37, 107, 220);
+}
+
+body::-webkit-scrollbar-thumb:active {
+  background: rgb(22, 93, 208);
+}
