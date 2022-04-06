@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import Store from './redux/configureStore';
 import Missions from './components/Missions';
 import Profile from './components/Profile';
+import Rockets from './components/Rockets';
 import App from './App';
 
 describe('Header component', () => {
@@ -49,6 +50,7 @@ describe('Header component', () => {
     expect(screen.getAllByText(/\b(my missions)\b|\b(my rockets)\b/i)).toHaveLength(2);
   });
 });
+
 describe('Profile page component', () => {
   test('renders correctly', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
