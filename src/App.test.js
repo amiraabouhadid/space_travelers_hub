@@ -2,14 +2,27 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import Store from './redux/configureStore';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import missions from './redux/missions/missions';
+import rockets from './redux/rockets/rockets';
 import Missions from './components/Missions';
 import Profile from './components/Profile';
 import Rockets from './components/Rockets';
 import App from './App';
 
+const rootReducer = combineReducers({
+  missions,
+  rockets,
+});
+
+const Store = createStore(
+  rootReducer,
+  applyMiddleware(thunk),
+);
+
 describe('Header component', () => {
-  test('home page link', () => {
+  test('home page link', async () => {
     render(
       <Provider store={Store}>
         <App />
@@ -19,7 +32,7 @@ describe('Header component', () => {
     userEvent.click(homeLink);
     expect(screen.getByText(/rockets/i)).toBeInTheDocument();
   });
-  test('rockets link', () => {
+  test('rockets link', async () => {
     render(
       <Provider store={Store}>
         <App />
@@ -29,7 +42,7 @@ describe('Header component', () => {
     userEvent.click(rocketsLink);
     expect(screen.getByText(/rockets/i)).toBeInTheDocument();
   });
-  test('missions link', () => {
+  test('missions link', async () => {
     render(
       <Provider store={Store}>
         <App />
@@ -39,7 +52,7 @@ describe('Header component', () => {
     userEvent.click(missionsLink);
     expect(screen.getByText(/missions/i)).toBeInTheDocument();
   });
-  test('profile link', () => {
+  test('profile link', async () => {
     render(
       <Provider store={Store}>
         <App />
@@ -52,7 +65,7 @@ describe('Header component', () => {
 });
 
 describe('Profile page component', () => {
-  test('renders correctly', () => {
+  test('renders correctly', async () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
     const rockets = [{
       id: '1329', name: 'myStar', description: 'second dummy text', image: 'cool pic',
@@ -64,7 +77,7 @@ describe('Profile page component', () => {
     ).toJSON();
     expect(profilePage).toMatchSnapshot();
   });
-  test('renders profile headers', () => {
+  test('renders profile headers', async () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
     const rockets = [{
       id: '1329', name: 'myStar', description: 'second dummy text', image: 'cool pic',
@@ -77,7 +90,7 @@ describe('Profile page component', () => {
     const profilePageHeaders = screen.getAllByText(/\b(my missions)\b|\b(my rockets)\b/i);
     expect(profilePageHeaders).toHaveLength(2);
   });
-  test('adds joined missions to profile when join mission button is clicked ', () => {
+  test('adds joined missions to profile when join mission button is clicked ', async () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
     const rockets = [{
       id: '1329', name: 'myStar', description: 'second dummy text', image: 'cool pic',
@@ -99,7 +112,7 @@ describe('Profile page component', () => {
 });
 
 describe('Missions page component', () => {
-  test('renders correctly', () => {
+  test('renders correctly', async () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     const missionsPage = renderer.create(
@@ -109,7 +122,7 @@ describe('Missions page component', () => {
     ).toJSON();
     expect(missionsPage).toMatchSnapshot();
   });
-  test('renders  missions table header ', () => {
+  test('renders  missions table header ', async () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -120,7 +133,7 @@ describe('Missions page component', () => {
     const missionsTableHeader = screen.getAllByText(/\b(^mission)\b|\b(description)\b|\b(status)\b/i);
     expect(missionsTableHeader).toHaveLength(3);
   });
-  test('renders  mission  name', () => {
+  test('renders  mission  name', async () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -131,7 +144,7 @@ describe('Missions page component', () => {
     const missionName = screen.getAllByText(/\bfalcon\b/i);
     expect(missionName).toHaveLength(1);
   });
-  test('renders  mission  description ', () => {
+  test('renders  mission  description ', async () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -142,7 +155,7 @@ describe('Missions page component', () => {
     const missionDescription = screen.getAllByText(/\ba dummy text created for testing purposes\b/i);
     expect(missionDescription).toHaveLength(1);
   });
-  test('renders  mission  status badge before joining mission', () => {
+  test('renders  mission  status badge before joining mission', async () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -153,7 +166,7 @@ describe('Missions page component', () => {
     const missionBadge = screen.getAllByText(/\bnot a member\b/i);
     expect(missionBadge).toHaveLength(1);
   });
-  test('renders  join mission button before joining mission', () => {
+  test('renders  join mission button before joining mission', async () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -165,7 +178,7 @@ describe('Missions page component', () => {
     expect(missionButton).toHaveLength(1);
   });
 
-  test('changes status badge and join button when mission is joined ', () => {
+  test('changes status badge and join button when mission is joined ', async () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -185,7 +198,7 @@ describe('Missions page component', () => {
 });
 
 describe('Rockets page component', () => {
-  test('renders correctly', () => {
+  test('renders correctly', async () => {
     const rockets = [{ id: '1', name: 'Falcon Heavy', description: 'a dummy text created for testing purposes' }];
 
     const rocketsPage = renderer.create(
@@ -195,7 +208,7 @@ describe('Rockets page component', () => {
     ).toJSON();
     expect(rocketsPage).toMatchSnapshot();
   });
-  test('renders  rocket  name', () => {
+  test('renders  rocket  name', async () => {
     const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -206,7 +219,7 @@ describe('Rockets page component', () => {
     const rocketName = screen.getAllByText(/\bFalcon\b/i);
     expect(rocketName).toHaveLength(1);
   });
-  test('renders  rocket  description ', () => {
+  test('renders  rocket  description ', async () => {
     const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -217,7 +230,7 @@ describe('Rockets page component', () => {
     const rocketDescription = screen.getAllByText(/\ba dummy text created for testing purposes\b/i);
     expect(rocketDescription).toHaveLength(1);
   });
-  test('renders reservation button before reserving the rocket', () => {
+  test('renders reservation button before reserving the rocket', async () => {
     const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -228,7 +241,7 @@ describe('Rockets page component', () => {
     const reservationButton = screen.getByText(/\bReserve Rocket\b/i);
     expect(reservationButton.textContent).toMatch(/Reserve Rocket/i);
   });
-  test('add reserved badge and cancel reservation button when the rocket is booked', () => {
+  test('add reserved badge and cancel reservation button when the rocket is booked', async () => {
     const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
