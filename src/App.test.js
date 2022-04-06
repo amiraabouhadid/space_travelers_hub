@@ -243,6 +243,6 @@ describe('Rockets page component', () => {
         <Rockets rockets={rockets} />
       </Provider>,
     ).toJSON();
-    expect(rocketsPageAfte).toMatchSnapshot();
+    expect(rocketsPageAfter).toMatchSnapshot();
   });
 });
