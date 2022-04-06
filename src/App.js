@@ -43,7 +43,15 @@ const App = () => {
           )}
         />
 
-        <Route path="/profile" element={<Profile missions={missions} />} />
+        <Route
+          path="/profile"
+          element={(
+            <Profile
+              missions={missions}
+              rockets={rockets}
+            />
+)}
+        />
       </Routes>
     </Router>
   );
