@@ -9,13 +9,19 @@ const Profile = (props) => {
         <h2>
           My Missions
         </h2>
-        <div>
-          {
+        <table className="table table-hover table-bordered">
+          <tbody>
+            {
         missions.filter((mission) => mission.reserved).map((mission) => (
-          <p className="border p-3" key={mission.id}>{mission.name}</p>
+          <tr key={mission.id}>
+            <td>
+              {mission.name}
+            </td>
+          </tr>
         ))
         }
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
   );
