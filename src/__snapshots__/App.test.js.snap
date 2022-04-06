@@ -238,3 +238,71 @@ exports[`Profile page component renders correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`Rockets page component add reserved badge and cancel reservation button when the rocket is booked 1`] = `
+<main
+  className="w-11/12 flex flex-col items-center p-8 gap-4 rockets-section"
+>
+  <div
+    className="flex items-center w-full gap-4 rocket-container"
+  >
+    <img
+      alt="Falcon"
+      className="rocket-image"
+    />
+    <div>
+      <h2
+        className="text-xl font-semibold"
+      >
+        Falcon
+      </h2>
+      <p
+        className="text-md"
+      >
+        a dummy text created for testing purposes
+      </p>
+      <button
+        className="text-sm border-1 border-blue-500 text-white bg-blue-500 rounded-md p-2"
+        onClick={[Function]}
+        type="button"
+      >
+        Reserve Rocket
+      </button>
+    </div>
+  </div>
+</main>
+`;
+
+exports[`Rockets page component renders correctly 1`] = `
+<main
+  className="w-11/12 flex flex-col items-center p-8 gap-4 rockets-section"
+>
+  <div
+    className="flex items-center w-full gap-4 rocket-container"
+  >
+    <img
+      alt="Falcon Heavy"
+      className="rocket-image"
+    />
+    <div>
+      <h2
+        className="text-xl font-semibold"
+      >
+        Falcon Heavy
+      </h2>
+      <p
+        className="text-md"
+      >
+        a dummy text created for testing purposes
+      </p>
+      <button
+        className="text-sm border-1 border-blue-500 text-white bg-blue-500 rounded-md p-2"
+        onClick={[Function]}
+        type="button"
+      >
+        Reserve Rocket
+      </button>
+    </div>
+  </div>
+</main>
+`;

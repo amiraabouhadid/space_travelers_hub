@@ -225,8 +225,8 @@ describe('Rockets page component', () => {
         <Rockets rockets={rockets} />
       </Provider>,
     );
-    const reservationButton = screen.getAllByText(/\breserve rocket\b/i);
-    expect(reservationButton).toHaveLength(1);
+    const reservationButton = screen.getByText(/\bReserve Rocket\b/i);
+    expect(reservationButton.textContent).toMatch(/Reserve Rocket/i);
   });
   test('add reserved badge and cancel reservation button when the rocket is booked', () => {
     const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
@@ -236,7 +236,7 @@ describe('Rockets page component', () => {
         <Rockets rockets={rockets} />
       </Provider>,
     );
-    const reservationButton = screen.getAllByText(/\breserve rocket\b/i);
+    const reservationButton = screen.getByText(/\bReserve Rocket\b/i);
     userEvent.click(reservationButton);
     const rocketsPageAfter = renderer.create(
       <Provider store={Store}>
