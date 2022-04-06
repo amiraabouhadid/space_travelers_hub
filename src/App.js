@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { getRockets } from './redux/rockets/rockets';
-import { getMissions, joinMission, leaveMission } from './redux/missions/missions';
+import { getMissions } from './redux/missions/missions';
 
 import Header from './components/Header';
 import Missions from './components/Missions';
@@ -19,13 +19,6 @@ const App = () => {
     dispatch(getMissions());
   }, []);
 
-  const joinMissionDispatch = (id) => {
-    dispatch(joinMission(id));
-  };
-  const leaveMissionDispatch = (id) => {
-    dispatch(leaveMission(id));
-  };
-
   return (
     <Router>
       <Header />
@@ -37,8 +30,6 @@ const App = () => {
           element={(
             <Missions
               missions={missions}
-              joinMissionDispatch={joinMissionDispatch}
-              leaveMissionDispatch={leaveMissionDispatch}
             />
           )}
         />

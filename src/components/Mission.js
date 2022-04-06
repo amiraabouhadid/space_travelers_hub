@@ -1,15 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { joinMission, leaveMission } from '../redux/missions/missions';
 
 const Mission = (props) => {
   const {
-    mission, joinMissionFunc, leaveMissionFunc,
+    mission,
   } = props;
   const { id, name, description } = mission;
 
   const isReserved = (mission) => {
     if (mission.reserved) return true;
     return false;
+  };
+  const dispatch = useDispatch();
+  const joinMissionDispatch = (id) => {
+    dispatch(joinMission(id));
+  };
+  const leaveMissionDispatch = (id) => {
+    dispatch(leaveMission(id));
   };
   return (
     <>
@@ -31,9 +40,9 @@ const Mission = (props) => {
           onClick={(e) => {
             e.preventDefault();
             if (isReserved(mission)) {
-              return leaveMissionFunc(id);
+              return leaveMissionDispatch(id);
             }
-            return joinMissionFunc(id);
+            return joinMissionDispatch(id);
           }}
           type="submit"
           className={isReserved(mission) ? 'btn btn-danger border' : 'btn btn-light border'}
@@ -47,9 +56,6 @@ const Mission = (props) => {
 Mission.propTypes = {
   mission:
   PropTypes.instanceOf(Object).isRequired,
-  joinMissionFunc:
-  PropTypes.instanceOf(Function).isRequired,
-  leaveMissionFunc:
-  PropTypes.instanceOf(Function).isRequired,
+
 };
 export default Mission;
