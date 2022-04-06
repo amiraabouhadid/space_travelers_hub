@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Mission from './Mission';
 
 const Missions = (props) => {
-  const { missions, joinMissionDispatch, leaveMissionDispatch } = props;
+  const { missions } = props;
 
   return (
     <div className="mx-8 my-8 px-5 py-5 text-left">
@@ -22,8 +22,6 @@ const Missions = (props) => {
             <tr key={mission.id}>
               <Mission
                 mission={mission}
-                joinMissionFunc={joinMissionDispatch}
-                leaveMissionFunc={leaveMissionDispatch}
               />
             </tr>
           ))}
@@ -36,9 +34,5 @@ const Missions = (props) => {
 Missions.propTypes = {
   missions:
   PropTypes.instanceOf(Array).isRequired,
-  joinMissionDispatch:
-  PropTypes.instanceOf(Function).isRequired,
-  leaveMissionDispatch:
-  PropTypes.instanceOf(Function).isRequired,
 };
 export default Missions;
