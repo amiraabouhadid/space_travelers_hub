@@ -6,53 +6,10 @@ const Mission = (props) => {
     mission, joinMissionFunc, leaveMissionFunc,
   } = props;
   const { id, name, description } = mission;
-  const joinButton = (mission) => {
-    if (mission.reserved) {
-      return (
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            leaveMissionFunc(id);
-          }}
-          type="submit"
-          className=" btn btn-danger border"
-        >
-          Leave mission
-        </button>
-      );
-    }
-    return (
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          joinMissionFunc(id);
-        }}
-        type="submit"
-        className=" btn btn-light border"
-      >
-        Join mission
-      </button>
 
-    );
-  };
-  const statusBadge = (mission) => {
-    if (mission.reserved) {
-      return (
-        <span
-          className="badge badge-primary bg-primary"
-        >
-          {'Active Member'.toUpperCase()}
-        </span>
-      );
-    }
-    return (
-      <span
-        className="badge badge-secondary bg-secondary"
-      >
-        {'Not A member'.toUpperCase()}
-      </span>
-
-    );
+  const isReserved = (mission) => {
+    if (mission.reserved) return true;
+    return false;
   };
   return (
     <>
@@ -63,10 +20,26 @@ const Mission = (props) => {
         {description}
       </td>
       <td className="align-middle">
-        {statusBadge(mission)}
+        <span
+          className={isReserved(mission) ? 'badge badge-primary bg-primary' : 'badge badge-secondary bg-secondary'}
+        >
+          {isReserved(mission) ? 'Active Member'.toUpperCase() : 'Not A member'.toUpperCase()}
+        </span>
       </td>
       <td className="align-middle">
-        {joinButton(mission)}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            if (isReserved(mission)) {
+              return leaveMissionFunc(id);
+            }
+            return joinMissionFunc(id);
+          }}
+          type="submit"
+          className={isReserved(mission) ? 'btn btn-danger border' : 'btn btn-light border'}
+        >
+          {isReserved(mission) ? 'Leave mission' : 'Join mission' }
+        </button>
       </td>
     </>
   );
