@@ -1,0 +1,10 @@
+.rocket-image {
+  width: 40%;
+  aspect-ratio: 1024 / 683;
+}
+
+@media only screen and (min-width: 992px) {
+  .rocket-image {
+    width: 20%;
+  }
+}

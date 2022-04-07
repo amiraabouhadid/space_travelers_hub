@@ -1,0 +1,50 @@
+.Header {
+  position: relative;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  border-bottom: 1px solid #aaa;
+}
+
+.NavLink {
+  position: relative;
+}
+
+@keyframes underline {
+  0% {
+    width: 0;
+    background-color: transparent;
+  }
+
+  100% {
+    width: 75%;
+    background-color: rgb(37, 99, 235);
+  }
+}
+
+.NavLink.active::before {
+  position: absolute;
+  content: '';
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -2px;
+  height: 2px;
+  background-color: #444;
+  animation-name: underline;
+  animation-delay: 5ms;
+  animation-duration: 180ms;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.NavLink:last-child::after {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 50%;
+  width: 2px;
+  background-color: #444;
+}

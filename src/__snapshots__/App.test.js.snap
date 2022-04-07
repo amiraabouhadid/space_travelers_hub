@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Missions page component changes status badge and join button when mission is joined  1`] = `
+<div
+  className="mx-8 my-8 px-5 py-5 text-left"
+>
+  <table
+    className="table table-striped table-bordered table-responsive"
+  >
+    <thead>
+      <tr>
+        <th>
+          Mission
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Status
+        </th>
+        <th>
+          Join
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="font-bold"
+        >
+          Falcon
+        </td>
+        <td>
+          a dummy text created for testing purposes
+        </td>
+        <td
+          className="align-middle"
+        >
+          <span
+            className="badge badge-secondary bg-secondary"
+          >
+            NOT A MEMBER
+          </span>
+        </td>
+        <td
+          className="align-middle"
+        >
+          <button
+            className="btn btn-light border"
+            onClick={[Function]}
+            type="submit"
+          >
+            Join mission
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Missions page component renders correctly 1`] = `
+<div
+  className="mx-8 my-8 px-5 py-5 text-left"
+>
+  <table
+    className="table table-striped table-bordered table-responsive"
+  >
+    <thead>
+      <tr>
+        <th>
+          Mission
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Status
+        </th>
+        <th>
+          Join
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td
+          className="font-bold"
+        >
+          Falcon
+        </td>
+        <td>
+          a dummy text created for testing purposes
+        </td>
+        <td
+          className="align-middle"
+        >
+          <span
+            className="badge badge-secondary bg-secondary"
+          >
+            NOT A MEMBER
+          </span>
+        </td>
+        <td
+          className="align-middle"
+        >
+          <button
+            className="btn btn-light border"
+            onClick={[Function]}
+            type="submit"
+          >
+            Join mission
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`Profile page component adds joined missions to profile when join mission button is clicked  1`] = `
+<div
+  className="p-5 row"
+>
+  <div
+    className="col-6"
+  >
+    <h2>
+      My Missions
+    </h2>
+    <table
+      className="table table-hover table-bordered"
+    >
+      <tbody />
+    </table>
+  </div>
+  <div
+    className="col-6"
+  >
+    <h2>
+      My Rockets
+    </h2>
+    <table
+      className="table table-hover table-bordered"
+    >
+      <tbody />
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Profile page component renders correctly 1`] = `
+<div
+  className="p-5 row"
+>
+  <div
+    className="col-6"
+  >
+    <h2>
+      My Missions
+    </h2>
+    <table
+      className="table table-hover table-bordered"
+    >
+      <tbody />
+    </table>
+  </div>
+  <div
+    className="col-6"
+  >
+    <h2>
+      My Rockets
+    </h2>
+    <table
+      className="table table-hover table-bordered"
+    >
+      <tbody />
+    </table>
+  </div>
+</div>
+`;
+
+exports[`Rockets page component add reserved badge and cancel reservation button when the rocket is booked 1`] = `
+<main
+  className="w-11/12 flex flex-col items-center p-8 gap-4 rockets-section"
+>
+  <div
+    className="flex items-center w-full gap-4 rocket-container"
+  >
+    <img
+      alt="Falcon"
+      className="rocket-image"
+    />
+    <div>
+      <h2
+        className="text-xl font-semibold"
+      >
+        Falcon
+      </h2>
+      <p
+        className="text-md"
+      >
+        a dummy text created for testing purposes
+      </p>
+      <button
+        className="text-sm border-1 border-blue-500 text-white bg-blue-500 rounded-md p-2"
+        onClick={[Function]}
+        type="button"
+      >
+        Reserve Rocket
+      </button>
+    </div>
+  </div>
+</main>
+`;
+
+exports[`Rockets page component renders correctly 1`] = `
+<main
+  className="w-11/12 flex flex-col items-center p-8 gap-4 rockets-section"
+>
+  <div
+    className="flex items-center w-full gap-4 rocket-container"
+  >
+    <img
+      alt="Falcon Heavy"
+      className="rocket-image"
+    />
+    <div>
+      <h2
+        className="text-xl font-semibold"
+      >
+        Falcon Heavy
+      </h2>
+      <p
+        className="text-md"
+      >
+        a dummy text created for testing purposes
+      </p>
+      <button
+        className="text-sm border-1 border-blue-500 text-white bg-blue-500 rounded-md p-2"
+        onClick={[Function]}
+        type="button"
+      >
+        Reserve Rocket
+      </button>
+    </div>
+  </div>
+</main>
+`;
