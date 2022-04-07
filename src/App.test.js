@@ -2,10 +2,24 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderer from 'react-test-renderer';
 import { Provider } from 'react-redux';
-import Store from './redux/configureStore';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import missions from './redux/missions/missions';
+import rockets from './redux/rockets/rockets';
 import Missions from './components/Missions';
 import Profile from './components/Profile';
+import Rockets from './components/Rockets';
 import App from './App';
+
+const rootReducer = combineReducers({
+  missions,
+  rockets,
+});
+
+const Store = createStore(
+  rootReducer,
+  applyMiddleware(thunk),
+);
 
 describe('Header component', () => {
   test('home page link', () => {
@@ -49,6 +63,7 @@ describe('Header component', () => {
     expect(screen.getAllByText(/\b(my missions)\b|\b(my rockets)\b/i)).toHaveLength(2);
   });
 });
+
 describe('Profile page component', () => {
   test('renders correctly', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
@@ -179,5 +194,68 @@ describe('Missions page component', () => {
       </Provider>,
     ).toJSON();
     expect(missionsPageAfterJoinMission).toMatchSnapshot();
+  });
+});
+
+describe('Rockets page component', () => {
+  test('renders correctly', () => {
+    const rockets = [{ id: '1', name: 'Falcon Heavy', description: 'a dummy text created for testing purposes' }];
+
+    const rocketsPage = renderer.create(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    ).toJSON();
+    expect(rocketsPage).toMatchSnapshot();
+  });
+  test('renders  rocket  name', () => {
+    const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
+
+    render(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    );
+    const rocketName = screen.getAllByText(/\bFalcon\b/i);
+    expect(rocketName).toHaveLength(1);
+  });
+  test('renders  rocket  description ', () => {
+    const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
+
+    render(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    );
+    const rocketDescription = screen.getAllByText(/\ba dummy text created for testing purposes\b/i);
+    expect(rocketDescription).toHaveLength(1);
+  });
+  test('renders reservation button before reserving the rocket', () => {
+    const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
+
+    render(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    );
+    const reservationButton = screen.getByText(/\bReserve Rocket\b/i);
+    expect(reservationButton.textContent).toMatch(/Reserve Rocket/i);
+  });
+  test('add reserved badge and cancel reservation button when the rocket is booked', () => {
+    const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
+
+    render(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    );
+    const reservationButton = screen.getByText(/\bReserve Rocket\b/i);
+    userEvent.click(reservationButton);
+    const rocketsPageAfter = renderer.create(
+      <Provider store={Store}>
+        <Rockets rockets={rockets} />
+      </Provider>,
+    ).toJSON();
+    expect(rocketsPageAfter).toMatchSnapshot();
   });
 });
