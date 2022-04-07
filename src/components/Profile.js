@@ -3,6 +3,32 @@ import PropTypes from 'prop-types';
 
 const Profile = (props) => {
   const { missions, rockets } = props;
+
+  const displayer = (container, message) => {
+    const displayble = container.filter((content) => content.reserved);
+    let displayed;
+
+    if (displayble.length > 0) {
+      displayed = displayble.map((item) => (
+        <tr key={item.id}>
+          <td className="p-3">
+            {item.name}
+          </td>
+        </tr>
+      ));
+    } else {
+      displayed = (
+        <tr>
+          <td className="p-3 italic">
+            {message}
+          </td>
+        </tr>
+      );
+    }
+
+    return displayed;
+  };
+
   return (
     <div className="p-5 row">
       <div className="col-6">
@@ -11,15 +37,7 @@ const Profile = (props) => {
         </h2>
         <table className="table table-hover table-bordered">
           <tbody>
-            {
-        missions.filter((mission) => mission.reserved).map((mission) => (
-          <tr key={mission.id}>
-            <td className="p-3">
-              {mission.name}
-            </td>
-          </tr>
-        ))
-        }
+            {displayer(missions, 'No missions joined')}
           </tbody>
         </table>
       </div>
@@ -29,15 +47,7 @@ const Profile = (props) => {
         </h2>
         <table className="table table-hover table-bordered">
           <tbody>
-            {
-              rockets.filter((rocket) => rocket.reserved).map((rocket) => (
-                <tr key={rocket.id}>
-                  <td className="p-3">
-                    {rocket.name}
-                  </td>
-                </tr>
-              ))
-            }
+            {displayer(rockets, 'No rockets reserved')}
           </tbody>
         </table>
       </div>
