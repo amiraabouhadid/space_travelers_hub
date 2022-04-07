@@ -1,15 +1,24 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
-
 # Space Travelers Hub
 
->A single page app where users can book space rockets and missions! 
+![](https://img.shields.io/badge/Microverse-blueviolet)
+
+> A single page app where users can book space rockets and missions! 
+
+## Screenshots
+
+- **Rockets page**
+
+![rockets page screenshot](./public/rockets.png)
+
+- **Missions page**
+
+![missions page screenshot](./public/missions.png)
 
 ## Built With
 
-- HTML5
-- CSS3
-- JavaScript ES6
-- React
+- HTML5, CSS3
+- JavaScript ES6, React/Redux, Tailwind, Bootstrap
+- CLI, TDD, gh-pages, Gitflow
 
 ## Live demo
 
@@ -59,6 +68,12 @@ $ git clone git@github.com:amiraabouhadid/space_travelers_hub.git.
 - Twitter: [@AbouhadidAmira](https://twitter.com/AbouhadidAmira)
 - LinkedIn: [amira-abouhadid](https://www.linkedin.com/in/amira-abouhadid/)
 
+👤 **Jonathan Sivahera**
+
+- GitHub: [@jssol](https://github.com/jssol)
+- Twitter: [@jsivahera](https://twitter.com/jsivahera)
+- LinkedIn: [jsivahera](https://www.linkedin.com/in/jsivahera/)
+
 ## Contributors
 
 Contributions, issues, and feature requests are welcome!
@@ -71,5 +86,4 @@ Give a ⭐️ if you like my portfolio!
 
 ## 📝 License
 
-- This project is [MIT](https://mit-license.org/) licensed.
-- This project is [creativecommons](https://creativecommons.org/licenses/by-nc/4.0/) licensed.
+- This project is [AGPL-3.0](./LICENSE) licensed.

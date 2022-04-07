@@ -29,33 +29,50 @@ const Mission = (props) => {
         {description}
       </td>
       <td className="align-middle">
-        <span
-          className={isReserved(mission) ? 'badge badge-primary bg-primary' : 'badge badge-secondary bg-secondary'}
-        >
-          {isReserved(mission) ? 'Active Member'.toUpperCase() : 'Not A member'.toUpperCase()}
-        </span>
+        {isReserved(mission) && (
+          <span className="badge badge-primary bg-primary">
+            {'Active Member'.toUpperCase()}
+          </span>
+        )}
+        {!isReserved(mission) && (
+          <span className="badge badge-secondary bg-secondary">
+            {'Not A member'.toUpperCase()}
+          </span>
+        )}
       </td>
       <td className="align-middle">
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            if (isReserved(mission)) {
+        {isReserved(mission) && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
               return leaveMissionDispatch(id);
-            }
-            return joinMissionDispatch(id);
-          }}
-          type="submit"
-          className={isReserved(mission) ? 'btn btn-danger border' : 'btn btn-light border'}
-        >
-          {isReserved(mission) ? 'Leave mission' : 'Join mission' }
-        </button>
+            }}
+            type="submit"
+            className="btn btn-danger border"
+          >
+            Leave mission
+          </button>
+        )}
+        {!isReserved(mission) && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              return joinMissionDispatch(id);
+            }}
+            type="submit"
+            className="btn btn-light border"
+          >
+            Join mission
+          </button>
+        )}
       </td>
     </>
   );
 };
+
 Mission.propTypes = {
   mission:
   PropTypes.instanceOf(Object).isRequired,
-
 };
+
 export default Mission;

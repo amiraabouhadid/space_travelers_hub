@@ -1,9 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { getMissions } from '../redux/missions/missions';
 import Mission from './Mission';
 
-const Missions = (props) => {
-  const { missions } = props;
+const Missions = () => {
+  const missions = useSelector((state) => state.missions, shallowEqual);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMissions());
+  }, []);
 
   return (
     <div className="mx-8 my-8 px-5 py-5 text-left">
@@ -31,8 +37,5 @@ const Missions = (props) => {
     </div>
   );
 };
-Missions.propTypes = {
-  missions:
-  PropTypes.instanceOf(Array).isRequired,
-};
+
 export default Missions;
