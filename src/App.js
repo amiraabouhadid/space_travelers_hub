@@ -11,6 +11,7 @@ import Profile from './components/Profile';
 const App = () => {
   const dispatch = useDispatch();
   const rockets = useSelector((state) => state.rockets, shallowEqual);
+  const missions = useSelector((state) => state.missions, shallowEqual);
 
   useEffect(() => {
     dispatch(getRockets());

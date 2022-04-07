@@ -30,33 +30,37 @@ const Mission = (props) => {
       </td>
       <td className="align-middle">
         {isReserved(mission) && (
-          <span className="badge badge-primary bg-primary">${'Active Member'.toUpperCase()}</span>
+          <span className="badge badge-primary bg-primary">
+            {'Active Member'.toUpperCase()}
+          </span>
         )}
-        {!!isReserved(mission) && (
-          <span className="badge badge-secondary bg-secondary">${'Not A member'.toUpperCase()}</span>
+        {!isReserved(mission) && (
+          <span className="badge badge-secondary bg-secondary">
+            {'Not A member'.toUpperCase()}
+          </span>
         )}
       </td>
       <td className="align-middle">
         {isReserved(mission) && (
           <button
-          onClick={(e) => {
-            e.preventDefault();
-            return leaveMissionDispatch(id);
-          }}
-          type="submit"
-          className="btn btn-danger border"
+            onClick={(e) => {
+              e.preventDefault();
+              return leaveMissionDispatch(id);
+            }}
+            type="submit"
+            className="btn btn-danger border"
           >
             Leave mission
           </button>
         )}
-        {!!isReserved(mission) && (
+        {!isReserved(mission) && (
           <button
-          onClick={(e) => {
-            e.preventDefault();
-            return joinMissionDispatch(id);
-          }}
-          type="submit"
-          className="btn btn-light border"
+            onClick={(e) => {
+              e.preventDefault();
+              return joinMissionDispatch(id);
+            }}
+            type="submit"
+            className="btn btn-light border"
           >
             Join mission
           </button>
