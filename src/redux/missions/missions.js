@@ -69,6 +69,7 @@ export const getMissions = () => async (dispatch) => {
         id: element.mission_id,
         name: element.mission_name,
         description: element.description,
+        wikipedia: element.wikipedia,
       });
     });
 
