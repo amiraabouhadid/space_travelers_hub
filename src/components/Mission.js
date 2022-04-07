@@ -29,11 +29,12 @@ const Mission = (props) => {
         {description}
       </td>
       <td className="align-middle">
-        <span
-          className={isReserved(mission) ? 'badge badge-primary bg-primary' : 'badge badge-secondary bg-secondary'}
-        >
-          {isReserved(mission) ? 'Active Member'.toUpperCase() : 'Not A member'.toUpperCase()}
-        </span>
+        {isReserved(mission) && (
+          <span className="badge badge-primary bg-primary">${'Active Member'.toUpperCase()}</span>
+        )}
+        {!!isReserved(mission) && (
+          <span className="badge badge-secondary bg-secondary">${'Not A member'.toUpperCase()}</span>
+        )}
       </td>
       <td className="align-middle">
         <button
