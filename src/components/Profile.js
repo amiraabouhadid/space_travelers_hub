@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RocketButton from './RocketButton';
 
 const Profile = (props) => {
   const { missions, rockets } = props;
@@ -11,8 +12,9 @@ const Profile = (props) => {
     if (displayble.length > 0) {
       displayed = displayble.map((item) => (
         <tr key={item.id}>
-          <td className="p-3">
+          <td className="p-3 flex justify-between items-center">
             {item.name}
+            <RocketButton rocket={item} />
           </td>
         </tr>
       ));
