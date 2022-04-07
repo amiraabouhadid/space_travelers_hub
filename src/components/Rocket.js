@@ -1,23 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import { addReservation as addRes, removeReservation as rmRes } from '../redux/rockets/rockets';
 import RocketButton from './RocketButton';
 import '../css/Rocket.css';
 
 const Rocket = ({ rocket }) => {
-  const dispatch = useDispatch();
-
   const {
-    description, image, name, id,
+    description, image, name,
   } = rocket;
 
   const isReserved = (rocket) => {
     if (rocket.reserved) return true;
     return false;
   };
-
-  const handleDispatch = () => (rocket.reserved ? dispatch(rmRes(id)) : dispatch(addRes(id)));
 
   return (
     <div className="flex items-center w-full gap-4 rocket-container">
@@ -30,11 +24,7 @@ const Rocket = ({ rocket }) => {
           )}
           {description}
         </p>
-        <RocketButton
-          handleDispatch={handleDispatch}
-          rocket={rocket}
-          isReserved={isReserved}
-        />
+        <RocketButton rocket={rocket} />
       </div>
     </div>
   );

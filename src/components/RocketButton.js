@@ -1,8 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addReservation as addRes, removeReservation as rmRes } from '../redux/rockets/rockets';
 
-const RocketButton = (props) => {
-  const { rocket, isReserved, handleDispatch } = props;
+const RocketButton = ({ rocket }) => {
+  const dispatch = useDispatch();
+
+  const { id } = rocket;
+
+  const isReserved = (rocket) => {
+    if (rocket.reserved) return true;
+    return false;
+  };
+
+  const handleDispatch = () => (rocket.reserved ? dispatch(rmRes(id)) : dispatch(addRes(id)));
 
   return (
     <>
@@ -30,8 +41,6 @@ const RocketButton = (props) => {
 
 RocketButton.propTypes = {
   rocket: PropTypes.instanceOf(Object).isRequired,
-  isReserved: PropTypes.func.isRequired,
-  handleDispatch: PropTypes.func.isRequired,
 };
 
 export default RocketButton;
