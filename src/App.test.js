@@ -22,7 +22,7 @@ const Store = createStore(
 );
 
 describe('Header component', () => {
-  test('home page link', async () => {
+  test('home page link', () => {
     render(
       <Provider store={Store}>
         <App />
@@ -32,7 +32,7 @@ describe('Header component', () => {
     userEvent.click(homeLink);
     expect(screen.getByText(/rockets/i)).toBeInTheDocument();
   });
-  test('rockets link', async () => {
+  test('rockets link', () => {
     render(
       <Provider store={Store}>
         <App />
@@ -42,7 +42,7 @@ describe('Header component', () => {
     userEvent.click(rocketsLink);
     expect(screen.getByText(/rockets/i)).toBeInTheDocument();
   });
-  test('missions link', async () => {
+  test('missions link', () => {
     render(
       <Provider store={Store}>
         <App />
@@ -52,7 +52,7 @@ describe('Header component', () => {
     userEvent.click(missionsLink);
     expect(screen.getByText(/missions/i)).toBeInTheDocument();
   });
-  test('profile link', async () => {
+  test('profile link', () => {
     render(
       <Provider store={Store}>
         <App />
@@ -65,7 +65,7 @@ describe('Header component', () => {
 });
 
 describe('Profile page component', () => {
-  test('renders correctly', async () => {
+  test('renders correctly', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
     const rockets = [{
       id: '1329', name: 'myStar', description: 'second dummy text', image: 'cool pic',
@@ -77,7 +77,7 @@ describe('Profile page component', () => {
     ).toJSON();
     expect(profilePage).toMatchSnapshot();
   });
-  test('renders profile headers', async () => {
+  test('renders profile headers', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
     const rockets = [{
       id: '1329', name: 'myStar', description: 'second dummy text', image: 'cool pic',
@@ -90,7 +90,7 @@ describe('Profile page component', () => {
     const profilePageHeaders = screen.getAllByText(/\b(my missions)\b|\b(my rockets)\b/i);
     expect(profilePageHeaders).toHaveLength(2);
   });
-  test('adds joined missions to profile when join mission button is clicked ', async () => {
+  test('adds joined missions to profile when join mission button is clicked ', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
     const rockets = [{
       id: '1329', name: 'myStar', description: 'second dummy text', image: 'cool pic',
@@ -112,7 +112,7 @@ describe('Profile page component', () => {
 });
 
 describe('Missions page component', () => {
-  test('renders correctly', async () => {
+  test('renders correctly', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     const missionsPage = renderer.create(
@@ -122,7 +122,7 @@ describe('Missions page component', () => {
     ).toJSON();
     expect(missionsPage).toMatchSnapshot();
   });
-  test('renders  missions table header ', async () => {
+  test('renders  missions table header ', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -133,7 +133,7 @@ describe('Missions page component', () => {
     const missionsTableHeader = screen.getAllByText(/\b(^mission)\b|\b(description)\b|\b(status)\b/i);
     expect(missionsTableHeader).toHaveLength(3);
   });
-  test('renders  mission  name', async () => {
+  test('renders  mission  name', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -144,7 +144,7 @@ describe('Missions page component', () => {
     const missionName = screen.getAllByText(/\bfalcon\b/i);
     expect(missionName).toHaveLength(1);
   });
-  test('renders  mission  description ', async () => {
+  test('renders  mission  description ', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -155,7 +155,7 @@ describe('Missions page component', () => {
     const missionDescription = screen.getAllByText(/\ba dummy text created for testing purposes\b/i);
     expect(missionDescription).toHaveLength(1);
   });
-  test('renders  mission  status badge before joining mission', async () => {
+  test('renders  mission  status badge before joining mission', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -166,7 +166,7 @@ describe('Missions page component', () => {
     const missionBadge = screen.getAllByText(/\bnot a member\b/i);
     expect(missionBadge).toHaveLength(1);
   });
-  test('renders  join mission button before joining mission', async () => {
+  test('renders  join mission button before joining mission', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -178,7 +178,7 @@ describe('Missions page component', () => {
     expect(missionButton).toHaveLength(1);
   });
 
-  test('changes status badge and join button when mission is joined ', async () => {
+  test('changes status badge and join button when mission is joined ', () => {
     const missions = [{ id: '123', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -198,7 +198,7 @@ describe('Missions page component', () => {
 });
 
 describe('Rockets page component', () => {
-  test('renders correctly', async () => {
+  test('renders correctly', () => {
     const rockets = [{ id: '1', name: 'Falcon Heavy', description: 'a dummy text created for testing purposes' }];
 
     const rocketsPage = renderer.create(
@@ -208,7 +208,7 @@ describe('Rockets page component', () => {
     ).toJSON();
     expect(rocketsPage).toMatchSnapshot();
   });
-  test('renders  rocket  name', async () => {
+  test('renders  rocket  name', () => {
     const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -219,7 +219,7 @@ describe('Rockets page component', () => {
     const rocketName = screen.getAllByText(/\bFalcon\b/i);
     expect(rocketName).toHaveLength(1);
   });
-  test('renders  rocket  description ', async () => {
+  test('renders  rocket  description ', () => {
     const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -230,7 +230,7 @@ describe('Rockets page component', () => {
     const rocketDescription = screen.getAllByText(/\ba dummy text created for testing purposes\b/i);
     expect(rocketDescription).toHaveLength(1);
   });
-  test('renders reservation button before reserving the rocket', async () => {
+  test('renders reservation button before reserving the rocket', () => {
     const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
@@ -241,7 +241,7 @@ describe('Rockets page component', () => {
     const reservationButton = screen.getByText(/\bReserve Rocket\b/i);
     expect(reservationButton.textContent).toMatch(/Reserve Rocket/i);
   });
-  test('add reserved badge and cancel reservation button when the rocket is booked', async () => {
+  test('add reserved badge and cancel reservation button when the rocket is booked', () => {
     const rockets = [{ id: '1', name: 'Falcon', description: 'a dummy text created for testing purposes' }];
 
     render(
