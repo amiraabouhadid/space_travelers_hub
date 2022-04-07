@@ -37,26 +37,38 @@ const Mission = (props) => {
         )}
       </td>
       <td className="align-middle">
-        <button
+        {isReserved(mission) && (
+          <button
           onClick={(e) => {
             e.preventDefault();
-            if (isReserved(mission)) {
-              return leaveMissionDispatch(id);
-            }
+            return leaveMissionDispatch(id);
+          }}
+          type="submit"
+          className="btn btn-danger border"
+          >
+            Leave mission
+          </button>
+        )}
+        {!!isReserved(mission) && (
+          <button
+          onClick={(e) => {
+            e.preventDefault();
             return joinMissionDispatch(id);
           }}
           type="submit"
-          className={isReserved(mission) ? 'btn btn-danger border' : 'btn btn-light border'}
-        >
-          {isReserved(mission) ? 'Leave mission' : 'Join mission' }
-        </button>
+          className="btn btn-light border"
+          >
+            Join mission
+          </button>
+        )}
       </td>
     </>
   );
 };
+
 Mission.propTypes = {
   mission:
   PropTypes.instanceOf(Object).isRequired,
-
 };
+
 export default Mission;
