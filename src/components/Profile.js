@@ -14,7 +14,7 @@ const Profile = (props) => {
         <tr key={item.id}>
           <td className="p-3 flex justify-between items-center">
             {item.name}
-            <RocketButton rocket={item} />
+            {message.includes('rockets') && <RocketButton rocket={item} />}
           </td>
         </tr>
       ));
