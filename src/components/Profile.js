@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RocketButton from './RocketButton';
+import MissionButton from './MissionButton';
 
 const Profile = (props) => {
   const { missions, rockets } = props;
@@ -15,13 +16,14 @@ const Profile = (props) => {
           <td className="p-3 flex justify-between items-center">
             {item.name}
             {message.includes('rockets') && <RocketButton rocket={item} />}
+            {message.includes('missions') && <MissionButton mission={item} />}
           </td>
         </tr>
       ));
     } else {
       displayed = (
         <tr>
-          <td className="p-3 italic">
+          <td className="p-4 italic">
             {message}
           </td>
         </tr>
