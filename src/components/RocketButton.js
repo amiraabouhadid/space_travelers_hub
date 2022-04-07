@@ -21,7 +21,7 @@ const RocketButton = ({ rocket }) => {
         <button
           onClick={handleDispatch}
           type="button"
-          className="text-sm text-blue-500 bg-white border-1 border-blue-500 rounded-md p-2"
+          className="text-sm text-blue-500 bg-white border-1 border-blue-500 rounded p-2"
         >
           Cancel Reservation
         </button>
@@ -30,7 +30,7 @@ const RocketButton = ({ rocket }) => {
         <button
           onClick={handleDispatch}
           type="button"
-          className="text-sm border-1 border-blue-500 text-white bg-blue-500 rounded-md p-2"
+          className="text-sm border-1 border-blue-500 text-white bg-blue-500 rounded p-2"
         >
           Reserve Rocket
         </button>
