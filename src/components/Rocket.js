@@ -29,13 +29,24 @@ const Rocket = ({ rocket }) => {
           )}
           {description}
         </p>
-        <button
-          className={isReserved(rocket) ? 'text-sm text-blue-500 bg-white border-1 border-blue-500 rounded-md p-2' : 'text-sm border-1 border-blue-500 text-white bg-blue-500 rounded-md p-2'}
+        {isReserved(rocket) && (
+          <button
           onClick={handleDispatch}
           type="button"
-        >
-          {isReserved(rocket) ? 'Cancel Reservation' : 'Reserve Rocket'}
-        </button>
+          className="text-sm text-blue-500 bg-white border-1 border-blue-500 rounded-md p-2"
+          >
+            Cancel Reservation
+          </button>
+        )}
+        {!!isReserved(rocket) && (
+          <button
+          onClick={handleDispatch}
+          type="button"
+          className="text-sm border-1 border-blue-500 text-white bg-blue-500 rounded-md p-2"
+          >
+            Reserve Rocket
+          </button>
+        )}
       </div>
     </div>
   );
