@@ -6,6 +6,10 @@
 
 /* eslint-enable */
 
+body {
+  overflow-x: hidden;
+}
+
 body::-webkit-scrollbar {
   width: 10px;
 }
